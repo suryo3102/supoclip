@@ -40,6 +40,7 @@ services:
     environment:
       - NODE_ENV=${NODE_ENV:-development}
       - NEXT_TELEMETRY_DISABLED=1
+      - NODE_OPTIONS=--max-old-space-size=2048
       - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:8000}
       - BACKEND_INTERNAL_URL=http://backend:8000
       - NEXT_PUBLIC_SELF_HOST=${SELF_HOST:-true}
@@ -562,7 +563,7 @@ services:
     healthcheck:
       test: ["CMD", ".venv/bin/arq", "--check", "src.workers.tasks.WorkerSettings"]
       interval: 30s
-      timeout: 10s
+      timeout: 30s
       retries: 3
       start_period: 60s
 
